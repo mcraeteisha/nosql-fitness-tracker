@@ -11,7 +11,6 @@ router.get("/api/workouts", (req, res) => {
       });
   });
 
-
 //Post route to create workout
 router.post("/api/workouts", ({body}, res) => {
   Workout.create(body)
@@ -22,7 +21,5 @@ router.post("/api/workouts", ({body}, res) => {
       res.status(404).json(err);
     });
 });
-
-
 
 module.exports = router;
