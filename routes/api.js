@@ -11,6 +11,17 @@ router.get("/api/workouts", (req, res) => {
       });
   });
 
+//Get workout by id
+router.get("/api/workouts/:id", async (req, res) => {
+    try {
+        const workoutData = await Workout.findByPk(req.params.id);
+        res.status(200).json(workoutData);
+    } catch (err) {
+      res.status(500).json(err);
+    }
+  });    
+
+
 //Add exercise  
 router.put('/api/workouts/:id', (req, res) => {
     Workout.findByIdAndUpdate(req.params.id, {$push: {exercises: req.body}})
