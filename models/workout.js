@@ -24,10 +24,11 @@ const workoutSchema = new Schema({
         weight: Number,
         sets: Number,
         reps: Number,
-        resistanceDuration: Number,
     },
     ]  
 });
+
+ 
 
 const Workout = mongoose.model("Workout", workoutSchema);
 

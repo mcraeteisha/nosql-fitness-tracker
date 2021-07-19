@@ -125,6 +125,23 @@ const workoutSeed = [
   },
 ];
 
+db.aggregate([
+  {
+    $addFields: {
+      totalDuration: { $sum: "$duration" },
+      totalWeight: { $sum: "$weight" },
+    }
+  },
+  {
+    $addFields: {
+      totalWorkout:
+      {
+        $add: ["$totalDuration", "$totalWeight"]
+      }
+    }
+  }
+])
+
 db.deleteMany({})
   .then(() => db.collection.insertMany(workoutSeed))
   .then((data) => {
@@ -135,3 +152,4 @@ db.deleteMany({})
     console.error(err);
     process.exit(1);
   });
+
